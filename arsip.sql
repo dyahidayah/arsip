@@ -11,7 +11,7 @@
  Target Server Version : 100411 (10.4.11-MariaDB)
  File Encoding         : 65001
 
- Date: 05/07/2024 06:29:51
+ Date: 14/07/2024 17:00:10
 */
 
 SET NAMES utf8mb4;
@@ -26,12 +26,7 @@ CREATE TABLE `kategori_surat_keluar`  (
   `nama_kategori` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `jenis_kategori` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_kategori`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of kategori_surat_keluar
--- ----------------------------
-INSERT INTO `kategori_surat_keluar` VALUES ('01KSK_B', 'Biasa', 'Permohonan');
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for kategori_surat_masuk
@@ -42,16 +37,45 @@ CREATE TABLE `kategori_surat_masuk`  (
   `nama_kategori` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `jenis_kategori` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_kategori`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
--- Records of kategori_surat_masuk
+-- Table structure for surat_keluar
 -- ----------------------------
-INSERT INTO `kategori_surat_masuk` VALUES ('01KSM_B', 'Biasa', 'Permohonan');
-INSERT INTO `kategori_surat_masuk` VALUES ('01KSM_R', 'Rahasia', 'Personil');
-INSERT INTO `kategori_surat_masuk` VALUES ('01KSM_T', 'Telegram', 'Terbuka');
-INSERT INTO `kategori_surat_masuk` VALUES ('02KSM_B', 'Biasa', 'Umum');
-INSERT INTO `kategori_surat_masuk` VALUES ('02KSM_T', 'Telegram', 'Segera');
+DROP TABLE IF EXISTS `surat_keluar`;
+CREATE TABLE `surat_keluar`  (
+  `no_agenda` int NOT NULL AUTO_INCREMENT,
+  `no_surat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `kategori` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `jns_surat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `asal_surat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `tgl_surat` date NULL DEFAULT NULL,
+  `tujuan_surat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `perihal` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  `disposisi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `status_surat` int NULL DEFAULT NULL,
+  PRIMARY KEY (`no_agenda`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for surat_masuk
+-- ----------------------------
+DROP TABLE IF EXISTS `surat_masuk`;
+CREATE TABLE `surat_masuk`  (
+  `no_agenda` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+  `no_surat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `kategori` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `jns_surat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `asal_surat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `tgl_surat` date NULL DEFAULT NULL,
+  `tujuan_surat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `perihal` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  `disposisi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `status_surat` int NULL DEFAULT NULL,
+  PRIMARY KEY (`no_agenda`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for user
@@ -65,12 +89,6 @@ CREATE TABLE `user`  (
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `permission` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_user`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of user
--- ----------------------------
-INSERT INTO `user` VALUES (1, 'Anindy', 'Operator Arsip', 'operator', 'operator123', 'operator');
-INSERT INTO `user` VALUES (2, 'Dhimas Adi Sanjaya', 'Kepala TU', 'superadmin', 'superadmin123', 'superadmin');
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 SET FOREIGN_KEY_CHECKS = 1;

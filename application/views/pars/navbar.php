@@ -56,18 +56,20 @@
 					<div class="col-md-6">
 						<nav id="navbar" class="navbar sub-navbar" style="line-height: 1">
 							<li><a class="nav-item <?= $active == 'surat_masuk' ? 'active' : '' ?>" href="<?= site_url('surat_masuk') ?>">Surat Masuk</a></li>
-							<li><a class="nav-item <?= $active == 'surat_keluar' ? 'active' : '' ?>" href="<?= site_url('surat_keluar') ?>">Surat Keluar</a></li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Kategori Surat
-								</a>
-								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item <?= $active == 'kategori_surat_masuk' ? 'active' : '' ?>" href="<?= site_url('kategori/kategori_surat_masuk') ?>">Surat Masuk</a>
-									<a class="dropdown-item <?= $active == 'kategori_surat_keluar' ? 'active' : '' ?>" href="<?= site_url('kategori/kategori_surat_keluar') ?>">Surat Keluar</a>
-								</div>
-							</li>
-							<li><a class="nav-item <?= $active == 'pelaporan' ? 'active' : '' ?>" href="<?= site_url('pelaporan') ?>">Pelaporan</a></li>
-						</nav>
+							<?php if($this->session->userdata('ses_daily_username') != 'superadmin'): ?>
+								<li><a class="nav-item <?= $active == 'surat_keluar' ? 'active' : '' ?>" href="<?= site_url('surat_keluar') ?>">Surat Keluar</a></li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Kategori Surat
+									</a>
+									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+										<a class="dropdown-item <?= $active == 'kategori_surat_masuk' ? 'active' : '' ?>" href="<?= site_url('kategori/kategori_surat_masuk') ?>">Surat Masuk</a>
+										<a class="dropdown-item <?= $active == 'kategori_surat_keluar' ? 'active' : '' ?>" href="<?= site_url('kategori/kategori_surat_keluar') ?>">Surat Keluar</a>
+									</div>
+								</li>
+								<li><a class="nav-item <?= $active == 'pelaporan' ? 'active' : '' ?>" href="<?= site_url('pelaporan') ?>">Pelaporan</a></li>
+							<?php endif; ?>
+							</nav>
 					</div>
 					<div class="col-md-6">
 						<ul class="text-right" style="list-style-type: none;">

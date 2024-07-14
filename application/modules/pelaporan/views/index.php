@@ -73,8 +73,13 @@
             </div>
         </div>
         <div class="col-md-2 text-center">
-            <button type="SUBMIT" class="w-50 btn btn-light mb-3">Cari</button>
+            <button type="" class="w-50 btn btn-light mb-3 btn-cari">Cari</button>
             <a href="<?= site_url('home') ?>" type="" class="w-50 m-auto btn btn-light">BATAL</a>
+        </div>
+        <div class="col-md-12 text-center bg-white rounded result-section d-none">
+            <div class="loader">
+                <img style="width:140px" src="<?= site_url('assets/img/spinner.svg')?>" alt="">
+            </div>
         </div>
     </div>
 </div>
@@ -100,4 +105,9 @@
                 console.log("error");
             });
         }
+
+    $('.btn-cari').click(function (e) {
+    //    $('.result-section.d-none').fadeIn('slow').removeClass('d-none')
+    });
+
 </script>

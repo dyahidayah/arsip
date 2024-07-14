@@ -6,10 +6,10 @@ class Pelaporan extends MY_Controller
     {
         parent::__construct();
         $this->load->model('M_pelaporan');
-        // if ($this->session->userdata('ses_daily_username') == null) {
-        //     $this->session->set_flashdata('error ', 'Mohon Login Untuk Melanjutkan');
-        //     redirect('login', 'refresh');
-        // }
+        if ($this->session->userdata('ses_daily_username') == null) {
+            $this->session->set_flashdata('error ', 'Mohon Login Untuk Melanjutkan');
+            redirect('login', 'refresh');
+        }
     }
     public function index()
     {

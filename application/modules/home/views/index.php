@@ -1,4 +1,4 @@
-<div class="p-5">
+<div class="p-5 w-100">
     <div class="row">
         <div class="col-md-12 text-center">
             <h4 class="text-white mb-5">
@@ -8,7 +8,16 @@
         </div>
         <div class="col-md-8 offset-md-2">
             <div class="row">
-                <div class="col-md-6">
+                <?php 
+                    $class="";
+                    if($this->session->userdata('ses_daily_username') == 'superadmin')
+                    {
+                        $class="col-md-6 offset-md-3";
+                    } else {
+                        $class="col-md-6";
+                    }
+                ?>
+                <div class="<?= $class ?>">
                     <div class="card text-white">
                         <div class="card-body bg-success">
                             <h4><?= $count_masuk ?></h4>
@@ -19,6 +28,9 @@
                         </div>
                     </div>
                 </div>
+                <?php 
+                if($this->session->userdata('ses_daily_username') != 'superadmin'):
+                ?>
                 <div class="col-md-6">
                     <div class="card text-white">
                         <div class="card-body bg-danger">
@@ -30,6 +42,7 @@
                         </div>
                     </div>
                 </div>
+                <?php endif;?>
             </div>
         </div>
     </div>

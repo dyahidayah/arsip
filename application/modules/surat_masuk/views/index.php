@@ -25,8 +25,10 @@
         <div class="col-md-12">
             
             <div class="text-right">
-                <a href="<?= site_url('surat_masuk/riwayat') ?>" class="btn btn-dark mb-4">Riwayat Surat Masuk <i class="icofont-history"></i></a>
-                <a href="<?= site_url('surat_masuk/tambah_suratmasuk') ?>" class="btn btn-success mb-4">Tambah Data <i class="icofont-ui-add"></i></a>
+                <?php if($this->session->userdata('ses_daily_username') != 'superadmin'): ?>
+                    <a href="<?= site_url('surat_masuk/riwayat') ?>" class="btn btn-dark mb-4">Riwayat Surat Masuk <i class="icofont-history"></i></a>
+                    <a href="<?= site_url('surat_masuk/tambah_suratmasuk') ?>" class="btn btn-success mb-4">Tambah Data <i class="icofont-ui-add"></i></a>
+                <?php endif;?>
             </div>
             <table id="table_target" class="table table-bordered bg-white">
                 <thead class="align-items-center">
@@ -59,9 +61,11 @@
                                 <?php 
                                     if($main_page == "main_pagesurat") {
                                 ?>
-                                    <a href="<?= site_url('surat_masuk/edit_suratmasuk/').$data->no_agenda ?>" class="text-success text-lg edit-data" data-id="<?= $data->no_agenda?>"><i class="icofont-ui-edit"></i></a>
-                                    <a href="#" onclick="delete_surat('<?= $data->no_agenda ?>')" class="text-danger text-lg"><i class="icofont-ui-delete"></i></a>
-                                    <a href="<?= site_url('upload/').$data->file ?>" class="text-dark text-lg" target="_blank"><i class="icofont-download"></i></a> 
+                                    <?php if($this->session->userdata('ses_daily_username') != 'superadmin'): ?>
+                                        <a href="<?= site_url('surat_masuk/edit_suratmasuk/').$data->no_agenda ?>" class="text-success text-lg edit-data" data-id="<?= $data->no_agenda?>"><i class="icofont-ui-edit"></i></a>
+                                        <a href="#" onclick="delete_surat('<?= $data->no_agenda ?>')" class="text-danger text-lg"><i class="icofont-ui-delete"></i></a>
+                                    <?php endif; ?>
+                                        <a href="<?= site_url('upload/').$data->file ?>" class="text-dark text-lg" target="_blank"><i class="icofont-download"></i></a> 
                                 <?php 
                                     } else {
                                         ?>

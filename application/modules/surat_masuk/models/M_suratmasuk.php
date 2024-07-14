@@ -190,7 +190,7 @@ class M_suratmasuk extends CI_Model
     function upload() 
     {
         $nama = uniqid(12) . '.pdf';
-        $config['upload_path']   = './upload/';
+        $config['upload_path']   = './upload/masuk/';
         $config['allowed_types'] = 'pdf';
         $config['file_name']     = $nama;
         $config['max_size']      = 2000;
