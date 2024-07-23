@@ -20,9 +20,21 @@ class Pelaporan extends MY_Controller
         $this->template->load('tema/index', 'index', $data); 
     }
 
-    public function filter($tgl_awal, $tgl_akhir, $data_surat, $kategori, $jenis_surat)
+    public function generate_kategori($data_surat)
     {
-        $cek = $this->M_pelaporan->filter($tgl_awal, $tgl_akhir, $data_surat, $kategori, $jenis_surat);
+        $data = $this->M_pelaporan->generate_kategori($data_surat);
+		echo json_encode($data);
+    }
+
+    public function generate_jeniskategori($kategori)
+    {
+        $data = $this->M_pelaporan->generate_jeniskategori($kategori);
+		echo json_encode($data);
+    }
+
+    public function filter($tgl_awal, $tgl_akhir, $data_surat, $kategori, $jns_surat)
+    {
+        $cek = $this->M_pelaporan->filter($tgl_awal, $tgl_akhir, $data_surat, $kategori, $jns_surat);
 		echo json_encode($cek);
     }
 }

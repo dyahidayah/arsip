@@ -23,7 +23,11 @@ a:hover {
   color: #7b94c9;
   text-decoration: none;
 }
-
+#footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
 
 
 /*--------------------------------------------------------------
