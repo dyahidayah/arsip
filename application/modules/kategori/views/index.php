@@ -4,6 +4,9 @@
         left : 15px;
         position: absolute;
     }
+    .main-content {
+        height: auto;
+    }
 </style>
 <div class="p-5 w-100">
     <div class="subtitle-menu">

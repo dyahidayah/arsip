@@ -94,6 +94,7 @@
                             <th>Kategori Surat</th>
                             <th>Jenis Surat</th>
                             <th>Perihal</th>
+                            <th class="kolom_ds">Data Surat</th>
                         </tr>
                     </thead>
                     <tbody id="tbody">
@@ -169,94 +170,113 @@
         let kategori    = $('#kategori').val()
         let jns_surat   = $('#jns_surat').val()
         
-        $('#tbody').find('tr').remove()
-        $('.judul').find('h5').remove()
-        $.ajax({
-            url: base + 'pelaporan/filter/' + tgl_awal + '/' + tgl_akhir + '/'+ data_surat + '/'+ kategori + '/'+ jns_surat + '/',
-            type: 'get',
-            dataType: 'json',
-        })
-        .done(function(data) {
-           console.log(data)
-           $(".loader").fadeOut()
-           if(data.lenght == 0) {
-                $('.result-section').append('<h5 class="m-5 p-5">Maaf Data Surat Tidak ditemukan</h5>')
-           } else  {
-                let options = [{day: 'numeric'}, {month: 'long'}, {year: 'numeric'}];
-                let tanggal_mulai = join(new Date(tgl_awal), options, ' ');
-                let tanggal_akhir = join(new Date(tgl_awal), options, ' ');
-
-                $('.hasil.d-none').fadeIn('slow').removeClass('d-none')
-                
-                let html='';
-                if(data_surat != 'semua') {
-                    if(data_surat == 'surat_masuk')
-                    {
+        if(tgl_awal != null && tgl_akhir) {
+            $('#tbody').find('tr').remove()
+            $('.judul').find('h5').remove()
+            $.ajax({
+                url: base + 'pelaporan/filter/' + tgl_awal + '/' + tgl_akhir + '/'+ data_surat + '/'+ kategori + '/'+ jns_surat + '/',
+                type: 'get',
+                dataType: 'json',
+            })
+            .done(function(data) {
+            console.log(data)
+            $(".loader").fadeOut()
+            if(data.lenght == 0) {
+                    $('.result-section').append('<h5 class="m-5 p-5">Maaf Data Surat Tidak ditemukan</h5>')
+            } else  {
+                    let options = [{day: 'numeric'}, {month: 'long'}, {year: 'numeric'}];
+                    let tanggal_mulai = join(new Date(tgl_awal), options, ' ');
+                    let tanggal_akhir = join(new Date(tgl_awal), options, ' ');
+                    
+                    $('.hasil.d-none').fadeIn('slow').removeClass('d-none')
+                    
+                    let html='';
+                    if(data_surat != 'semua') {
+                        if(data_surat == 'surat_masuk')
+                        {
+                            $('.judul').append(`
+                            <h5>LAPORAN SURAT MASUK SATHARMATTIM <br/>
+                            DARI TANGGAL ${tanggal_mulai} - ${tanggal_akhir}
+                            </h5>
+                            `)
+                        } else {
+                            $('.judul').append(`
+                            <h5>LAPORAN SURAT KELUAR SATHARMATTIM <br/>
+                            DARI TANGGAL ${tanggal_mulai} - ${tanggal_akhir}
+                            </h5>
+                            `)
+                        }
+                        $('.kolom_ds').fadeOut()
+                        for (let i = 0; i < data.length; i++) {
+                            $('#tbody').append(
+                                `
+                                <tr>
+                                    <td>${i+1}</td>
+                                    <td>${data[i]['no_surat']}</td>
+                                    <td>${data[i]['kategori']}</td>
+                                    <td>${data[i]['jns_surat']}</td>
+                                    <td>${data[i]['perihal']}</td>
+                                <tr>
+                                `
+                            );
+                        }
+                    }
+                    else {
+                        $('.kolom_ds').fadeIn()
                         $('.judul').append(`
-                        <h5>LAPORAN SURAT MASUK SATHARMATTIM <br/>
+                        <h5>LAPORAN SURAT MASUK DAN KELUAR SATHARMATTIM <br/>
                         DARI TANGGAL ${tanggal_mulai} - ${tanggal_akhir}
                         </h5>
                         `)
-                    } else {
-                        $('.judul').append(`
-                        <h5>LAPORAN SURAT KELUAR SATHARMATTIM <br/>
-                        DARI TANGGAL ${tanggal_mulai} - ${tanggal_akhir}
-                        </h5>
-                        `)
+                        for (let i = 0; i < data['masuk'].length; i++) {
+                            $('#tbody').append(
+                                `
+                                <tr>
+                                    <td>${i+1}</td>
+                                    <td>${data['masuk'][i]['no_surat']}</td>
+                                    <td>${data['masuk'][i]['kategori']}</td>
+                                    <td>${data['masuk'][i]['jns_surat']}</td>
+                                    <td>${data['masuk'][i]['perihal']}</td>
+                                    <td>Surat Masuk</td>
+                                <tr>
+                                `
+                            );
+                        }
+                        for (let i = 0; i < data['keluar'].length; i++) {
+                            $('#tbody').append(
+                                `
+                                <tr>
+                                    <td>${i+1}</td>
+                                    <td>${data['keluar'][i]['no_surat']}</td>
+                                    <td>${data['keluar'][i]['kategori']}</td>
+                                    <td>${data['keluar'][i]['jns_surat']}</td>
+                                    <td>${data['keluar'][i]['perihal']}</td>
+                                    <td>Surat Keluar</td>
+                                <tr>
+                                `
+                            );
+                        }
                     }
                     
-                    for (let i = 0; i < data.length; i++) {
-                        $('#tbody').append(
-                            `
-                            <tr>
-                                <td>${i+1}</td>
-                                <td>${data[i]['no_surat']}</td>
-                                <td>${data[i]['kategori']}</td>
-                                <td>${data[i]['jns_surat']}</td>
-                                <td>${data[i]['perihal']}</td>
-                            <tr>
-                            `
-                        );
-                    }
-                }
-                else {
-                    $('.judul').append(`
-                    <h5>LAPORAN SURAT MASUK DAN KELUAR SATHARMATTIM <br/>
-                    DARI TANGGAL ${tanggal_mulai} - ${tanggal_akhir}
-                    </h5>
-                    `)
-                    for (let i = 0; i < data['masuk'].length; i++) {
-                        $('#tbody').append(
-                            `
-                            <tr>
-                                <td>${i+1}</td>
-                                <td>${data['masuk'][i]['no_surat']}</td>
-                                <td>${data['masuk'][i]['kategori']}</td>
-                                <td>${data['masuk'][i]['jns_surat']}</td>
-                                <td>${data['masuk'][i]['perihal']}</td>
-                            <tr>
-                            `
-                        );
-                    }
-                    for (let i = 0; i < data['keluar'].length; i++) {
-                        $('#tbody').append(
-                            `
-                            <tr>
-                                <td>${i+1}</td>
-                                <td>${data['keluar'][i]['no_surat']}</td>
-                                <td>${data['keluar'][i]['kategori']}</td>
-                                <td>${data['keluar'][i]['jns_surat']}</td>
-                                <td>${data['keluar'][i]['perihal']}</td>
-                            <tr>
-                            `
-                        );
-                    }
-                }
-                
-           }
-        })
-        .fail(function() {
-           
-        });
+            }
+            })
+            .fail(function() {
+            
+            });
+        } else {
+            Swal.fire({
+                title: 'Filter Tanggal Kosong',
+                text: "Apakah anda akan melanjutkan pencarian??",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: 'green',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, tentu!'
+            }).then((result) => {
+                window.location.reload();
+            })
+        }
+
+        
     });
 </script>

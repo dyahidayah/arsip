@@ -49,7 +49,7 @@
 			<div class="col-md-11">
 				<div class="row mt-3">
 					<div class="col-md-6 offset-md-6 text-center">
-						<input type="text" class="search form-control" placeholder="Search..">
+						<input type="text" class="search form-control" placeholder="">
 					</div>
 				</div>
 				<div class="row mt-3">
