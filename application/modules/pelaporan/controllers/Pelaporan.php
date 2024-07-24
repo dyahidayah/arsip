@@ -37,4 +37,11 @@ class Pelaporan extends MY_Controller
         $cek = $this->M_pelaporan->filter($tgl_awal, $tgl_akhir, $data_surat, $kategori, $jns_surat);
 		echo json_encode($cek);
     }
+    public function printPDF()
+	{
+		$mpdf = new \Mpdf\Mpdf();
+		$data = $this->load->view('hasilPrint', [], TRUE);
+		$mpdf->WriteHTML($data);
+		$mpdf->Output();
+	}
 }

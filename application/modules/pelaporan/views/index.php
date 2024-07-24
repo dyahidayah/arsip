@@ -85,7 +85,7 @@
             </div>
             <div class="hasil d-none p-5">
                 <div class="text-right">
-                    <a href="#" target="_blank" class="text-lg text-dark">
+                    <a href="<?= site_url('pelaporan/printPDF') ?>" target="_blank" class="text-lg text-dark">
                         <i class="icofont-print"></i>
                     </a>
                 </div>
