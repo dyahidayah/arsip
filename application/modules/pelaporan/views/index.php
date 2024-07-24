@@ -113,21 +113,28 @@
             // console.log(inputText)
             var data_surat = $('#data_surat').val()
             $('#kategori').find('option').remove();
-            $.ajax({
-                url: base + 'pelaporan/generate_kategori/' + data_surat,
-                type: 'get',
-                dataType: 'json',
-            })
-            .done(function(data) {
-                let option = "";
+
+            if(data_surat == 'semua') {
                 $('#kategori').append('<option value="semua">Semua Kategori</option>')
-                for (let i = 0; i < data.length; i++) {
-                    $('#kategori').append("<option value="+data[i]['nama_kategori'] +">" + data[i]['nama_kategori'] + "</option>");
-                }
-            })
-            .fail(function() {
-                console.log("error");
-            });
+            }
+            else {
+                $('#kategori').find('option').remove();
+                $.ajax({
+                    url: base + 'pelaporan/generate_kategori/' + data_surat,
+                    type: 'get',
+                    dataType: 'json',
+                })
+                .done(function(data) {
+                    let option = "";
+                    $('#kategori').append('<option value="semua">Semua Kategori</option>')
+                    for (let i = 0; i < data.length; i++) {
+                        $('#kategori').append("<option value="+data[i]['nama_kategori'] +">" + data[i]['nama_kategori'] + "</option>");
+                    }
+                })
+                .fail(function() {
+                    console.log("error");
+                });
+            }
         }
 
     var mySelect = document.getElementById('kategori');

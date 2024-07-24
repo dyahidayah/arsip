@@ -33,6 +33,7 @@ class M_pelaporan extends CI_Model
     function filter($tgl_awal, $tgl_akhir, $data_surat, $kategori, $jns_surat)
     {
         $where = [
+            'status_surat' => '1',
             'tgl_surat >=' => $tgl_awal,
             'tgl_surat <=' => $tgl_akhir,
         ];
