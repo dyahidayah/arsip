@@ -59,6 +59,10 @@
                 <div class="col-sm-8">
                     <select name="kategori" id="kategori" class="form-control" required>
                         <option value="semua">Semua Kategori Surat</option>
+                        <option value="Telegram">Telegram</option>
+                        <option value="Biasa">Biasa</option>
+                        <option value="Rahasia">Rahasia</option>
+                        <option value="Surat Perintah">Surat Perintah</option>
                     </select>
                 </div>
             </div>
@@ -115,7 +119,13 @@
             $('#kategori').find('option').remove();
 
             if(data_surat == 'semua') {
-                $('#kategori').append('<option value="semua">Semua Kategori</option>')
+                $('#kategori').append(`
+                <option value="semua">Semua Kategori</option>
+                <option value="Telegram">Telegram</option>
+                <option value="Biasa">Biasa</option>
+                <option value="Rahasia">Rahasia</option>
+                <option value="Surat Perintah">Surat Perintah</option>`
+            )
             }
             else {
                 $('#kategori').find('option').remove();
