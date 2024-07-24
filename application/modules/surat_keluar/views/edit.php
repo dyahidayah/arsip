@@ -30,7 +30,7 @@
                 <div class="form-group row">
                     <label for="no_agenda" class="col-sm-3 col-form-label">No Agenda</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="no_agenda" name="no_agenda" value="<?= $detail->no_agenda ?>" readonly>
+                        <input type="text" class="form-control" id="no_agenda" name="no_agenda" value="<?= ltrim($detail->no_agenda, '0') ?>" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -116,20 +116,7 @@
 <script>
     // SET NO AGENDA
     $(document).ready(function() {
-        $.ajax({
-            url: base + 'surat_keluar/generate_number_agenda/',
-            type: 'get',
-            dataType: 'json',
-        })
-        .done(function(data) {
-            console.log(data)
-            $('#no_agenda').val(data)
-        })
-        .fail(function() {
-            console.log("error");
-        });
-
-
+        
         // SET KATEGORI SURAT
         var mySelect = document.getElementById('kategori');
         mySelect.onchange = (event) => {
@@ -172,6 +159,8 @@
                 for (let i = 0; i < data.length; i++) {
                     $('#jns_surat').append("<option value="+data[i]['jenis_kategori'] +">" + data[i]['jenis_kategori'] + "</option>");
                 }
+                let jns_value = $('#jns_surat_val').val()
+                $(`#jns_surat option[value=${jns_value}]`).attr('selected','selected');
             })
             .fail(function() {
                 console.log("error");
