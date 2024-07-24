@@ -155,6 +155,14 @@
                 console.log("error");
             });
         }
+    // FORMAT DATE to dd mm yy
+    function join(date, options, separator) {
+        function format(option) {
+            let formatter = new Intl.DateTimeFormat('en', option);
+            return formatter.format(date);
+        }
+        return options.map(format).join(separator);
+    }
 
     $('.btn-cari').click(function (e) {
         $('.result-section.d-none').fadeIn('slow').removeClass('d-none')
@@ -175,14 +183,17 @@
         .done(function(data) {
            console.log(data)
            $(".loader").fadeOut()
-           if(data.lenght < 1) {
-                console.log('kosong')
+           if(data.lenght == 0) {
                 $('.result-section').append('<h5 class="m-5 p-5">Maaf Data Surat Tidak ditemukan</h5>')
            } else  {
+                let options = [{day: 'numeric'}, {month: 'long'}, {year: 'numeric'}];
+                let tanggal_mulai = join(new Date(tgl_awal), options, ' ');
+                let tanggal_akhir = join(new Date(tgl_awal), options, ' ');
+
                 $('.hasil.d-none').fadeIn('slow').removeClass('d-none')
                 $('.judul').append(`
                 <h5>LAPORAN SURAT MASUK DAN KELUAR SATHARMATTIM <br/>
-                DARI TANGGAL ${tgl_awal} s/d ${tgl_akhir}
+                DARI TANGGAL ${tanggal_mulai} - ${tanggal_akhir}
                 </h5>
                 `)
                 let html='';
@@ -205,5 +216,4 @@
            
         });
     });
-
 </script>
