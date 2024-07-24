@@ -186,7 +186,7 @@
             } else  {
                     let options = [{day: 'numeric'}, {month: 'long'}, {year: 'numeric'}];
                     let tanggal_mulai = join(new Date(tgl_awal), options, ' ');
-                    let tanggal_akhir = join(new Date(tgl_awal), options, ' ');
+                    let tanggal_akhir = join(new Date(tgl_akhir), options, ' ');
                     
                     $('.hasil.d-none').fadeIn('slow').removeClass('d-none')
                     
