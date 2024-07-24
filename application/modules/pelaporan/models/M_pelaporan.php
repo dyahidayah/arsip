@@ -43,8 +43,15 @@ class M_pelaporan extends CI_Model
         if($jns_surat != 'semua') {
             $where['jns_surat'] = $jns_surat;
         }
-
-        return $this->db->get_where($data_surat, $where)->result();
+        if($data_surat != 'semua') {
+            return $this->db->get_where($data_surat, $where)->result();
+        } else {
+            $data = [
+                'masuk' => $this->db->get_where('surat_masuk', $where)->result(),
+                'keluar' => $this->db->get_where('surat_keluar', $where)->result(),
+            ];
+            return $data;
+        }
     }
     
 }

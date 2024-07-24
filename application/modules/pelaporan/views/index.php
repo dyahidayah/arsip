@@ -46,7 +46,7 @@
                 <label for="data_surat" class="col-sm-4 col-form-label">Data Surat</label>
                 <div class="col-sm-8">
                     <select name="data_surat" id="data_surat" class="form-control" required>
-                        <!-- <option value="semua">Semua</option> -->
+                        <option value="semua">Semua</option>
                         <option value="surat_masuk">Surat Masuk</option>
                         <option value="surat_keluar">Surat Keluar</option>
                     </select>
@@ -59,10 +59,6 @@
                 <div class="col-sm-8">
                     <select name="kategori" id="kategori" class="form-control" required>
                         <option value="semua">Semua Kategori Surat</option>
-                        <!-- <option value="Telegram">Telegram</option>
-                        <option value="Biasa">Biasa</option>
-                        <option value="Rahasia">Rahasia</option>
-                        <option value="Surat Perintah">Surat Perintah</option> -->
                     </select>
                 </div>
             </div>
@@ -89,7 +85,7 @@
                         <i class="icofont-print"></i>
                     </a>
                 </div>
-                <div class="judul"></div>
+                <div class="judul mb-3"></div>
                 <table id="table_hasil" class="table table-bordered bg-white">
                     <thead class="align-items-center">
                         <tr class="text-center">
@@ -191,25 +187,72 @@
                 let tanggal_akhir = join(new Date(tgl_awal), options, ' ');
 
                 $('.hasil.d-none').fadeIn('slow').removeClass('d-none')
-                $('.judul').append(`
-                <h5>LAPORAN SURAT MASUK DAN KELUAR SATHARMATTIM <br/>
-                DARI TANGGAL ${tanggal_mulai} - ${tanggal_akhir}
-                </h5>
-                `)
+                
                 let html='';
-                for (let i = 0; i < data.length; i++) {
-                    $('#tbody').append(
-                        `
-                        <tr>
-                            <td>${i+1}</td>
-                            <td>${data[i]['no_surat']}</td>
-                            <td>${data[i]['kategori']}</td>
-                            <td>${data[i]['jns_surat']}</td>
-                            <td>${data[i]['perihal']}</td>
-                        <tr>
-                        `
-                    );
+                if(data_surat != 'semua') {
+                    if(data_surat == 'surat_masuk')
+                    {
+                        $('.judul').append(`
+                        <h5>LAPORAN SURAT MASUK SATHARMATTIM <br/>
+                        DARI TANGGAL ${tanggal_mulai} - ${tanggal_akhir}
+                        </h5>
+                        `)
+                    } else {
+                        $('.judul').append(`
+                        <h5>LAPORAN SURAT KELUAR SATHARMATTIM <br/>
+                        DARI TANGGAL ${tanggal_mulai} - ${tanggal_akhir}
+                        </h5>
+                        `)
+                    }
+                    
+                    for (let i = 0; i < data.length; i++) {
+                        $('#tbody').append(
+                            `
+                            <tr>
+                                <td>${i+1}</td>
+                                <td>${data[i]['no_surat']}</td>
+                                <td>${data[i]['kategori']}</td>
+                                <td>${data[i]['jns_surat']}</td>
+                                <td>${data[i]['perihal']}</td>
+                            <tr>
+                            `
+                        );
+                    }
                 }
+                else {
+                    $('.judul').append(`
+                    <h5>LAPORAN SURAT MASUK DAN KELUAR SATHARMATTIM <br/>
+                    DARI TANGGAL ${tanggal_mulai} - ${tanggal_akhir}
+                    </h5>
+                    `)
+                    for (let i = 0; i < data['masuk'].length; i++) {
+                        $('#tbody').append(
+                            `
+                            <tr>
+                                <td>${i+1}</td>
+                                <td>${data['masuk'][i]['no_surat']}</td>
+                                <td>${data['masuk'][i]['kategori']}</td>
+                                <td>${data['masuk'][i]['jns_surat']}</td>
+                                <td>${data['masuk'][i]['perihal']}</td>
+                            <tr>
+                            `
+                        );
+                    }
+                    for (let i = 0; i < data['keluar'].length; i++) {
+                        $('#tbody').append(
+                            `
+                            <tr>
+                                <td>${i+1}</td>
+                                <td>${data['keluar'][i]['no_surat']}</td>
+                                <td>${data['keluar'][i]['kategori']}</td>
+                                <td>${data['keluar'][i]['jns_surat']}</td>
+                                <td>${data['keluar'][i]['perihal']}</td>
+                            <tr>
+                            `
+                        );
+                    }
+                }
+                
            }
         })
         .fail(function() {
