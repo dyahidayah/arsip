@@ -69,7 +69,7 @@
                 <div class="form-group row">
                     <label for="no_surat" class="col-sm-4 col-form-label">File</label>
                     <div class="col-sm-8">
-                    <a href="<?= site_url('upload/').$detail->file ?>" class="text-dark text-lg" target="_blank"><i class="icofont-download"></i></a> 
+                    <a href="<?= site_url('upload/masuk/').$detail->file ?>" class="text-dark text-lg" target="_blank"><i class="icofont-download"></i></a> 
                     </div>
                 </div>
             </div>

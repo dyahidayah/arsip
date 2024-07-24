@@ -7,6 +7,9 @@
     .view_detail:focus {
         color: #ff7f00;
     }
+    .main-content {
+        height: auto;
+    }
 </style>
 
 <div class="p-5 w-100">
@@ -65,7 +68,7 @@
                                         <a href="<?= site_url('surat_masuk/edit_suratmasuk/').$data->no_agenda ?>" class="text-success text-lg edit-data" data-id="<?= $data->no_agenda?>"><i class="icofont-ui-edit"></i></a>
                                         <a href="#" onclick="delete_surat('<?= $data->no_agenda ?>')" class="text-danger text-lg"><i class="icofont-ui-delete"></i></a>
                                     <?php endif; ?>
-                                        <a href="<?= site_url('upload/').$data->file ?>" class="text-dark text-lg" target="_blank"><i class="icofont-download"></i></a> 
+                                        <a href="<?= site_url('upload/masuk/').$data->file ?>" class="text-dark text-lg" target="_blank"><i class="icofont-download"></i></a> 
                                 <?php 
                                     } else {
                                         ?>

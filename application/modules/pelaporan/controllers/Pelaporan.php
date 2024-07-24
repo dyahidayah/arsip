@@ -38,10 +38,15 @@ class Pelaporan extends MY_Controller
 		echo json_encode($cek);
     }
     public function printPDF()
-	{
-		$mpdf = new \Mpdf\Mpdf();
-		$data = $this->load->view('hasilPrint', [], TRUE);
-		$mpdf->WriteHTML($data);
-		$mpdf->Output();
-	}
+    {
+        // panggil library yang kita buat sebelumnya yang bernama pdfgenerator
+        $this->load->library('pdfgenerator');
+        $this->data['title_pdf'] = 'Laporan Surat Masuk Dan Keluar';
+        $file_pdf = uniqid();
+        $paper = 'A4';
+        $orientation = "portrait";
+		$html = $this->load->view('welcome_message',$this->data, true);	  
+        // run dompdf
+        $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+    }
 }
