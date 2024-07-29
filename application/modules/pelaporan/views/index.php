@@ -85,7 +85,7 @@
             </div>
             <div class="hasil d-none p-5">
                 <div class="text-right">
-                    <a href="<?= site_url('pelaporan/printPDF') ?>" target="_blank" class="text-lg text-dark">
+                    <a href="#" target="_blank" class="text-lg text-dark print_pdf">
                         <i class="icofont-print"></i>
                     </a>
                 </div>
@@ -274,7 +274,7 @@
                             );
                         }
                     }
-                    
+                    $('.print_pdf').attr('href', base + 'pelaporan/printPDF/' + tgl_awal + '/' + tgl_akhir + '/'+ data_surat + '/'+ kategori + '/'+ jns_surat + '/')
             }
             })
             .fail(function() {

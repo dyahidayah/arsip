@@ -37,16 +37,19 @@ class Pelaporan extends MY_Controller
         $cek = $this->M_pelaporan->filter($tgl_awal, $tgl_akhir, $data_surat, $kategori, $jns_surat);
 		echo json_encode($cek);
     }
-    public function printPDF()
+    public function printPDF($tgl_awal, $tgl_akhir, $data_surat, $kategori, $jns_surat)
     {
-        // panggil library yang kita buat sebelumnya yang bernama pdfgenerator
-        $this->load->library('pdfgenerator');
-        $this->data['title_pdf'] = 'Laporan Surat Masuk Dan Keluar';
-        $file_pdf = uniqid();
-        $paper = 'A4';
-        $orientation = "portrait";
-		$html = $this->load->view('welcome_message',$this->data, true);	  
-        // run dompdf
-        $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+        $mpdf = new \Mpdf\Mpdf();
+        
+		$data = [
+            'data_surat' => $data_surat,
+            'tanggal_awal' => date('d-M-Y', strtotime($tgl_awal)),
+            'tanggal_akhir' => date('d-M-Y', strtotime($tgl_akhir)),
+			'detail_surat' => $this->M_pelaporan->filter($tgl_awal, $tgl_akhir, $data_surat, $kategori, $jns_surat),
+		];
+
+		$view = $this->load->view('export/laporan_pdf', $data, true);
+		$mpdf->WriteHTML($view);
+		$mpdf->Output('listsurat.pdf', 'I');
     }
 }

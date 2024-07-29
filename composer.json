@@ -11,7 +11,10 @@
 		"source": "https://github.com/bcit-ci/CodeIgniter"
 	},
 	"require": {
-		"php": ">=5.3.7"
+		"php": ">=5.2.4",
+		"phpoffice/phpspreadsheet": "^1.16",
+		"dompdf/dompdf": "^1.0",
+		"mpdf/mpdf": "^8.1"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
