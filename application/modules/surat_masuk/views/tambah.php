@@ -54,7 +54,7 @@
                 <div class="form-group row">
                     <label for="jns_surat" class="col-sm-3 col-form-label">Jenis Surat</label>
                     <div class="col-sm-9">
-                        <select name="jns_surat" id="jns_surat" class="form-control" required>
+                        <select name="jns_surat" id="jns_surat" class="form-control">
                             <option value="">--Jenis Surat--</option>
                         </select>
                     </div>
