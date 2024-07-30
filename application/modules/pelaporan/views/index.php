@@ -263,7 +263,7 @@
                             $('#tbody').append(
                                 `
                                 <tr>
-                                    <td>${i+1}</td>
+                                    <td>${i+data['masuk'].length+1}</td>
                                     <td>${data['keluar'][i]['no_surat']}</td>
                                     <td>${data['keluar'][i]['kategori']}</td>
                                     <td>${data['keluar'][i]['jns_surat']}</td>
