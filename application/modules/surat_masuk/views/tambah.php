@@ -133,6 +133,7 @@
             var inputText = event.target.value;
             console.log(inputText)
             var kategori = $('#kategori').val()
+            $("#jns_surat").find('option').remove();
             $.ajax({
                 url: base + 'surat_masuk/generate_jeniskategori/' + kategori,
                 type: 'get',
@@ -140,8 +141,13 @@
             })
             .done(function(data) {
                 let option = "";
-                for (let i = 0; i < data.length; i++) {
-                    $('#jns_surat').append("<option value="+data[i]['jenis_kategori'] +">" + data[i]['jenis_kategori'] + "</option>");
+                if(data.length > 0 ) {
+                    $('#jns_surat').append("<option value=''>--Jenis Surat--</option>")
+                    for (let i = 0; i < data.length; i++) {
+                         $('#jns_surat').append("<option value="+data[i]['jenis_kategori'] +">" + data[i]['jenis_kategori'] + "</option>");
+                    }
+                } else {
+                    $('#jns_surat').append("<option value=''>--Jenis Surat--</option>")
                 }
             })
             .fail(function() {
