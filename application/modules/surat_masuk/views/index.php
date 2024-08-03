@@ -29,7 +29,7 @@
             
             <div class="text-right">
                 <?php if($this->session->userdata('ses_daily_username') != 'superadmin'): ?>
-                    <a href="<?= site_url('surat_masuk/riwayat') ?>" class="btn btn-dark mb-4">Riwayat Surat Masuk <i class="icofont-history"></i></a>
+                    <a href="<?= site_url('surat_masuk/riwayat') ?>" class="btn btn-dark mb-4">History Surat Masuk <i class="icofont-history"></i></a>
                     <a href="<?= site_url('surat_masuk/tambah_suratmasuk') ?>" class="btn btn-success mb-4">Tambah Data <i class="icofont-ui-add"></i></a>
                 <?php endif;?>
             </div>

@@ -95,6 +95,7 @@
                         <tr class="text-center">
                             <th>No</th>
                             <th>No Surat</th>
+                            <th>Tanggal Surat</th>
                             <th>Kategori Surat</th>
                             <th>Jenis Surat</th>
                             <th>Perihal</th>
@@ -225,11 +226,13 @@
                         }
                         $('.kolom_ds').fadeOut()
                         for (let i = 0; i < data.length; i++) {
+                            let tgl_surat = join(new Date(data[i]['tgl_surat']), options, ' ')
                             $('#tbody').append(
                                 `
                                 <tr>
                                     <td>${i+1}</td>
                                     <td>${data[i]['no_surat']}</td>
+                                    <td>${tgl_surat}</td>
                                     <td>${data[i]['kategori']}</td>
                                     <td>${data[i]['jns_surat']}</td>
                                     <td>${data[i]['perihal']}</td>
@@ -246,11 +249,13 @@
                         </h5>
                         `)
                         for (let i = 0; i < data['masuk'].length; i++) {
+                            let tgl_surat = join(new Date(data['masuk'][i]['tgl_surat']), options, ' ')
                             $('#tbody').append(
                                 `
                                 <tr>
                                     <td>${i+1}</td>
                                     <td>${data['masuk'][i]['no_surat']}</td>
+                                    <td>${tgl_surat}</td>
                                     <td>${data['masuk'][i]['kategori']}</td>
                                     <td>${data['masuk'][i]['jns_surat']}</td>
                                     <td>${data['masuk'][i]['perihal']}</td>
@@ -260,11 +265,13 @@
                             );
                         }
                         for (let i = 0; i < data['keluar'].length; i++) {
+                            let tgl_surat = join(new Date(data['keluar'][i]['tgl_surat']), options, ' ')
                             $('#tbody').append(
                                 `
                                 <tr>
                                     <td>${i+data['masuk'].length+1}</td>
                                     <td>${data['keluar'][i]['no_surat']}</td>
+                                    <td>${tgl_surat}</td>
                                     <td>${data['keluar'][i]['kategori']}</td>
                                     <td>${data['keluar'][i]['jns_surat']}</td>
                                     <td>${data['keluar'][i]['perihal']}</td>

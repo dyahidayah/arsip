@@ -45,6 +45,7 @@
             <tr>
                 <th>No</th>
                 <th>No Surat</th>
+                <th>Tanggal Surat</th>
                 <th>Kategori Surat</th>
                 <th>Jenis Surat</th>
                 <th>Perihal</th>
@@ -61,10 +62,12 @@
             ?>
                 
                 <?php foreach ($detail_surat as $dm) :
+                
                 ?>
                     <tr>
                         <td class="text-center"><?= $no++ ?></td>
                         <td class="text-center"><?= ($dm->no_surat) ? $dm->no_surat : '-' ?></td>
+                        <td class="text-center"><?= ($dm->tgl_surat) ? date('d-M-Y', strtotime($dm->tgl_surat)) : '-' ?></td>
                         <td class="text-center adibold"><?= ($dm->kategori) ? $dm->kategori : '-' ?></td>
                         <td class="text-center"><?= ($dm->jns_surat) ? $dm->jns_surat : '-' ?></td>
                         <td class="text-center"><?= ($dm->perihal) ? $dm->perihal : '-' ?></td>
@@ -78,6 +81,7 @@
                     <tr>
                         <td class="text-center"><?= $no++ ?></td>
                         <td class="text-center"><?= ($dm->no_surat) ? $dm->no_surat : '-' ?></td>
+                        <td class="text-center"><?= ($dm->tgl_surat) ? date('d-M-Y', strtotime($dm->tgl_surat)) : '-' ?></td>
                         <td class="text-center adibold"><?= ($dm->kategori) ? $dm->kategori : '-' ?></td>
                         <td class="text-center"><?= ($dm->jns_surat) ? $dm->jns_surat : '-' ?></td>
                         <td class="text-center"><?= ($dm->perihal) ? $dm->perihal : '-' ?></td>
@@ -89,6 +93,7 @@
                     <tr>
                         <td class="text-center"><?= $no++ ?></td>
                         <td class="text-center"><?= ($dm->no_surat) ? $dm->no_surat : '-' ?></td>
+                        <td class="text-center"><?= ($dm->tgl_surat) ? date('d-M-Y', strtotime($dm->tgl_surat)) : '-' ?></td>
                         <td class="text-center adibold"><?= ($dm->kategori) ? $dm->kategori : '-' ?></td>
                         <td class="text-center"><?= ($dm->jns_surat) ? $dm->jns_surat : '-' ?></td>
                         <td class="text-center"><?= ($dm->perihal) ? $dm->perihal : '-' ?></td>

@@ -28,7 +28,7 @@
         <div class="col-md-12">
             
             <div class="text-right">
-                <a href="<?= site_url('surat_keluar/riwayat') ?>" class="btn btn-dark mb-4">Riwayat Surat keluar <i class="icofont-history"></i></a>
+                <a href="<?= site_url('surat_keluar/riwayat') ?>" class="btn btn-dark mb-4">History Surat keluar <i class="icofont-history"></i></a>
                 <a href="<?= site_url('surat_keluar/tambah_suratkeluar') ?>" class="btn btn-success mb-4">Tambah Data <i class="icofont-ui-add"></i></a>
             </div>
             <table id="table_target" class="table table-bordered bg-white">
