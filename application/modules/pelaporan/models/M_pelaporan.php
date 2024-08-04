@@ -21,11 +21,11 @@ class M_pelaporan extends CI_Model
         return $data;
     }
 
-    function generate_jeniskategori($kategori)
+    function generate_jeniskategori($kategori, $data_surat)
     {
         $this->db->select('jenis_kategori');
         $this->db->where('nama_kategori', $kategori);
-        $data = $this->db->get('kategori_surat_keluar')->result();
+        $data = $this->db->get('kategori_' . $data_surat)->result();
 
         return $data;
     }

@@ -112,7 +112,7 @@
 </div>
 
 <script>
-     var mySelect = document.getElementById('data_surat');
+    var mySelect = document.getElementById('data_surat');
         mySelect.onchange = (event) => {
             var inputText = event.target.value;
             // console.log(inputText)
@@ -148,14 +148,15 @@
             }
         }
 
-    var mySelect = document.getElementById('kategori');
-        mySelect.onchange = (event) => {
+    var mySelect2 = document.getElementById('kategori');
+        mySelect2.onchange = (event) => {
             var inputText = event.target.value;
             // console.log(inputText)
             var kategori = $('#kategori').val()
+            var data_surat = $('#data_surat').val()
             $('#jns_surat').find('option').remove();
             $.ajax({
-                url: base + 'pelaporan/generate_jeniskategori/' + kategori,
+                url: base + 'pelaporan/generate_jeniskategori/' + kategori + '/' + data_surat,
                 type: 'get',
                 dataType: 'json',
             })

@@ -26,9 +26,9 @@ class Pelaporan extends MY_Controller
 		echo json_encode($data);
     }
 
-    public function generate_jeniskategori($kategori)
+    public function generate_jeniskategori($kategori, $data_surat)
     {
-        $data = $this->M_pelaporan->generate_jeniskategori($kategori);
+        $data = $this->M_pelaporan->generate_jeniskategori($kategori, $data_surat);
 		echo json_encode($data);
     }
 
